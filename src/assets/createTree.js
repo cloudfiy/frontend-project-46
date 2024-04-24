@@ -1,34 +1,32 @@
 import _ from 'lodash';
 
 const createTree = (data1, data2) => {
-  // const keys = Object.keys({ ...data1, ...data2 }).sort();
-  const keys = _.sortBy(Object.keys({ ...data1, ...data2 }));
-  const tree = keys.map((key) => {
-    if (!(key in data1)) {
-      return { key, value: data2[key], status: 'add' };
+  const keys = _.union(Object.keys(data1), Object.keys(data2));
+
+  return keys.map((key) => {
+    const value1 = data1[key];
+    const value2 = data2[key];
+
+    if (!_.has(data1, key)) {
+      return { key, value: value2, status: 'add' };
     }
-    if (!(key in data2)) {
-      return { key, value: data1[key], status: 'del' };
+    if (!_.has(data2, key)) {
+      return { key, value: value1, status: 'del' };
     }
-    if (data1[key] !== data2[key]) {
-      if (
-        _.isObject(data1[key])
-        && data1[key] !== null
-        && _.isObject(data2[key])
-        && data2[key] !== null
-      ) {
-        return { key, value: createTree(data1[key], data2[key]), status: 'nested' };
-      }
-      return {
-        key,
-        value: data1[key],
-        changedValue: data2[key],
-        status: 'changed',
-      };
+    if (_.isEqual(value1, value2)) {
+      return { key, value: value1, status: 'unchanged' };
     }
-    return { key, value: data1[key], status: 'unchanged' };
+    if (_.isObject(value1) && _.isObject(value2)) {
+      return { key, value: createTree(value1, value2), status: 'nested' };
+    }
+
+    return {
+      key,
+      value: value1,
+      changedValue: value2,
+      status: 'changed',
+    };
   });
-  return tree;
 };
 
 export default createTree;

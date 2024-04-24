@@ -15,14 +15,16 @@ const plain = (tree, path = '') => {
   }) => {
     const currentPath = path ? `${path}.${key}` : key;
 
-    return {
+    const handlers = {
       nested: () => plain(value, currentPath),
       del: () => `${formatProperty(currentPath)} was removed`,
       add: () => `${formatProperty(currentPath)} was added with value: ${toString(value)}`,
       changed: () => `${formatProperty(currentPath)} was updated. From ${toString(value)} to ${toString(
         changedValue,
       )}`,
-    }[status]?.();
+    };
+
+    return handlers[status]?.();
   });
 
   return lines.filter(Boolean).join('\n');
