@@ -26,29 +26,38 @@ const stylish = (tree) => {
     const currentIndent = INDENT_CHAR.repeat(indentCount - 2);
     const bracketIndent = INDENT_CHAR.repeat(indentCount - SPACE_COUNT);
 
+    const formatAdded = (key, value) => `${currentIndent}+ ${key}: ${stringify(value, depth + 1)}`;
+
+    const formatDeleted = (key, value) => `${currentIndent}- ${key}: ${stringify(value, depth + 1)}`;
+
+    const formatChanged = (key, value, changedValue) => `${currentIndent}- ${key}: ${stringify(
+      value,
+      depth + 1,
+    )}\n${currentIndent}+ ${key}: ${stringify(changedValue, depth + 1)}`;
+
+    const formatNested = (key, value) => `${currentIndent}  ${key}: ${generateStylishOutput(value, depth + 1)}`;
+
+    const formatDefault = (key, value) => `${currentIndent}  ${key}: ${value}`;
+
     const result = currentValue.map(({
       key, value, changedValue, status,
     }) => {
       switch (status) {
         case 'add':
-          return `${currentIndent}+ ${key}: ${stringify(value, depth + 1)}`;
+          return formatAdded(key, value);
         case 'del':
-          return `${currentIndent}- ${key}: ${stringify(value, depth + 1)}`;
+          return formatDeleted(key, value);
         case 'changed':
-          return `${currentIndent}- ${key}: ${stringify(
-            value,
-            depth + 1,
-          )}\n${currentIndent}+ ${key}: ${stringify(changedValue, depth + 1)}`;
+          return formatChanged(key, value, changedValue);
         case 'nested':
-          return `${currentIndent}  ${key}: ${generateStylishOutput(value, depth + 1)}`;
+          return formatNested(key, value);
         default:
-          return `${currentIndent}  ${key}: ${value}`;
+          return formatDefault(key, value);
       }
     });
 
     return `{\n${result.join('\n')}\n${bracketIndent}}`;
   };
-
   return generateStylishOutput(tree, 1);
 };
 
