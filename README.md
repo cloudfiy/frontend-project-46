@@ -30,7 +30,7 @@ Gendiff Json:
 <a href="https://asciinema.org/a/zLaaKbHE0tMW0cvUTNUtQjxCs" target="_blank"><img src="https://asciinema.org/a/zLaaKbHE0tMW0cvUTNUtQjxCs.svg" /></a>
 
 Gendiff Yaml:
-<a href="https://asciinema.org/a/95jqtVQj8w8EKJAynpJZaB9ha" target="_blank"><img src="https://asciinema.org/a/95jqtVQj8w8EKJAynpJZaB9ha.svg" /></a>
+[![asciicast](https://asciinema.org/a/95jqtVQj8w8EKJAynpJZaB9ha.svg)](https://asciinema.org/a/95jqtVQj8w8EKJAynpJZaB9ha)
 
 Format selection:
 [![asciicast](https://asciinema.org/a/3jjDN1AY498clCoN1iTts1pF1.svg)](https://asciinema.org/a/3jjDN1AY498clCoN1iTts1pF1)
