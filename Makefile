@@ -7,8 +7,8 @@ gendiff:
 lint:
 	npx eslint .
 
-test:
-	npx test
-
 test-coverage:
 	npm test -- --coverage --coverageProvider=v8
+
+test:
+	npx -n --experimental-vm-modules jest
