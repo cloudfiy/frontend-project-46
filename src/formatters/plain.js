@@ -10,36 +10,22 @@ const toString = (item) => {
 const formatProperty = (path) => `Property '${path}'`;
 
 const plain = (tree, path = '') => {
-  const lines = [];
-
-  tree.forEach(({
+  const lines = tree.flatMap(({
     key, value, changedValue, status,
   }) => {
     const currentPath = path ? `${path}.${key}` : key;
 
-    switch (status) {
-      case 'nested':
-        lines.push(plain(value, currentPath));
-        break;
-      case 'del':
-        lines.push(`${formatProperty(currentPath)} was removed`);
-        break;
-      case 'add':
-        lines.push(`${formatProperty(currentPath)} was added with value: ${toString(value)}`);
-        break;
-      case 'changed':
-        lines.push(
-          `${formatProperty(currentPath)} was updated. From ${toString(value)} to ${toString(
-            changedValue,
-          )}`,
-        );
-        break;
-      default:
-        break;
-    }
+    return {
+      nested: () => plain(value, currentPath),
+      del: () => `${formatProperty(currentPath)} was removed`,
+      add: () => `${formatProperty(currentPath)} was added with value: ${toString(value)}`,
+      changed: () => `${formatProperty(currentPath)} was updated. From ${toString(value)} to ${toString(
+        changedValue,
+      )}`,
+    }[status]?.();
   });
 
-  return lines.join('\n');
+  return lines.filter(Boolean).join('\n');
 };
 
 export default plain;

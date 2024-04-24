@@ -1,7 +1,8 @@
 import _ from 'lodash';
 
 const createTree = (data1, data2) => {
-  const keys = Object.keys({ ...data1, ...data2 }).sort();
+  // const keys = Object.keys({ ...data1, ...data2 }).sort();
+  const keys = _.sortBy(Object.keys({ ...data1, ...data2 }));
   const tree = keys.map((key) => {
     if (!(key in data1)) {
       return { key, value: data2[key], status: 'add' };
