@@ -12,3 +12,8 @@ Gendiff Json:
 
 Gendiff Yaml:
 <a href="https://asciinema.org/a/95jqtVQj8w8EKJAynpJZaB9ha" target="_blank"><img src="https://asciinema.org/a/95jqtVQj8w8EKJAynpJZaB9ha.svg" /></a>
+
+<a href="https://asciinema.org/a/b6tQwDtw29HtDCiBv3XIdt7Vw" target="_blank"><img src="https://asciinema.org/a/b6tQwDtw29HtDCiBv3XIdt7Vw.svg" /></a>
+
+Gendiff plain output:
+<a href="https://asciinema.org/a/cw0pRgF1o8RSqw7FXSCac5GPM" target="_blank"><img src="https://asciinema.org/a/cw0pRgF1o8RSqw7FXSCac5GPM.svg" /></a>
