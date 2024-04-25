@@ -2,7 +2,7 @@
   "name": "@hexlet/code",
   "version": "1.0.0",
   "type": "module",
-  "description": "[![Actions Status](https://github.com/cloudfiy/frontend-project-46/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/cloudfiy/frontend-project-46/actions)",
+  "description": "Shows differences between two files",
   "main": "src/index.js",
   "bin": {
     "gendiff": "bin/gendiff.js"

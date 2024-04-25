@@ -1,5 +1,3 @@
-import * as fs from 'node:fs';
-import * as path from 'node:path';
 import yaml from 'js-yaml';
 
 const formatParsers = {
@@ -8,10 +6,12 @@ const formatParsers = {
   '.yml': yaml.load,
 };
 
-const parsers = (filepath) => {
-  const data = fs.readFileSync(filepath, 'UTF-8');
-  const format = path.extname(filepath);
-
-  return formatParsers[format](data);
+const parsers = (data, format) => {
+  const parser = formatParsers[format];
+  if (!parser) {
+    throw new Error(`Unsupported format: ${format}`);
+  }
+  return parser(data);
 };
+
 export default parsers;
