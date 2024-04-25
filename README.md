@@ -6,6 +6,8 @@
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/1f9159c75c37f28745a8/maintainability)](https://codeclimate.com/github/cloudfiy/frontend-project-46/maintainability)
 
+[![Test Coverage](https://api.codeclimate.com/v1/badges/1f9159c75c37f28745a8/test_coverage)](https://codeclimate.com/github/cloudfiy/frontend-project-46/test_coverage)
+
 ### 'Difference generator'
 
 ## Description
